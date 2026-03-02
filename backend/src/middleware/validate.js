@@ -35,6 +35,7 @@ const schemas = {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     role: Joi.string().valid('admin', 'teacher').default('teacher'),
+    school: Joi.string().min(2).max(200).optional(),
   }),
 
   // Class schemas
