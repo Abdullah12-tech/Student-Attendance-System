@@ -8,6 +8,29 @@ const connectDB = require('./config/database');
 const setupRoutes = require('./routes');
 const logger = require('./utils/logger');
 const cron = require('node-cron');
+const User = require('./models/User');
+
+// Create default admin user
+const createDefaultAdmin = async () => {
+  try {
+    const adminEmail = process.env.DEFAULT_ADMIN_EMAIL || 'admin@attendx.com';
+    const adminPassword = process.env.DEFAULT_ADMIN_PASSWORD || 'admin123';
+    
+    const existingAdmin = await User.findOne({ email: adminEmail });
+    if (!existingAdmin) {
+      await User.create({
+        name: 'System Admin',
+        email: adminEmail,
+        password: adminPassword,
+        role: 'admin',
+      });
+      logger.info(`Default admin created: ${adminEmail} / ${adminPassword}`);
+      logger.info('⚠️  IMPORTANT: Change the default admin password immediately!');
+    }
+  } catch (error) {
+    logger.error(`Error creating default admin: ${error.message}`);
+  }
+};
 
 // Initialize Express app
 const app = express();
@@ -89,6 +112,9 @@ app.use((err, req, res, next) => {
 // Start cron job for auto-absent marking
 const startCronJob = require('./cron/attendanceCron');
 startCronJob();
+
+// Create default admin on startup
+createDefaultAdmin();
 
 // Start server
 const PORT = process.env.PORT || 5000;

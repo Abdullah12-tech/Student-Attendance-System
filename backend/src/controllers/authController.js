@@ -10,6 +10,52 @@ const generateToken = (userId) => {
   );
 };
 
+// @desc    Public signup for teachers
+// @route   POST /api/auth/signup
+// @access  Public
+exports.signup = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Check if user exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'User already exists with this email',
+      });
+    }
+
+    // Create user as teacher (public signup)
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role: 'teacher', // Force teacher role for public signup
+    });
+
+    const token = generateToken(user._id);
+
+    res.status(201).json({
+      success: true,
+      message: 'Account created successfully',
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    logger.error(`Signup error: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      message: 'Server error during registration',
+    });
+  }
+};
+
 // @desc    Register new user (admin only)
 // @route   POST /api/auth/register
 // @access  Private/Admin
