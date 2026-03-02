@@ -29,6 +29,7 @@ The project is a full-stack school attendance system with:
 - [x] Added SEO component with meta tags, Open Graph, Twitter Cards, Schema.org
 - [x] Fixed signup "access denied" error - created public `/api/auth/signup` endpoint
 - [x] Added default admin creation on server startup (admin@attendx.com / admin123)
+- [x] Fixed signup validation error - added `school` field to register schema
 
 ## Current Structure
 
