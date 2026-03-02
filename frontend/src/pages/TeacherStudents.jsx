@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { studentsAPI, classesAPI } from '../../services/api';
+import { studentsAPI, classesAPI } from '../services/api';
 
 const TeacherStudents = () => {
   const [students, setStudents] = useState([]);
