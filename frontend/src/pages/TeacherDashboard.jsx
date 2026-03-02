@@ -64,7 +64,7 @@ export default function TeacherDashboard() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-sky-900 mb-8">Teacher Dashboard</h1>
+      <h1 className="text-3xl font-bold text-sky-900 mb-8">AttendX</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>

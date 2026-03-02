@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext';
 // Pages
 import Landing from './pages/Landing';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import StudentCheckIn from './pages/StudentCheckIn';
 import TeacherDashboard from './pages/TeacherDashboard';
 import TeacherClasses from './pages/TeacherClasses';

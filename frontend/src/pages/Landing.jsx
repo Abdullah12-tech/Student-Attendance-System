@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 // ─── Animated Counter Component ───────────────────────────────────────────────
 const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
@@ -364,6 +365,12 @@ const Landing = () => {
   }));
 
   return (
+    <>
+      <SEO
+        title="AttendX - Smart Attendance System with GPS Geofencing"
+        description="Eliminate proxy attendance with GPS geofencing, unique student IDs, and real-time analytics. Trusted by 500+ schools worldwide."
+        keywords="attendance system, school management, GPS geofencing, student tracking, education technology, classroom management"
+      />
     <div className="min-h-screen bg-[#fafbff] overflow-x-hidden">
       {/* ─── Navigation ─────────────────────────────────────────────────── */}
       <motion.nav
@@ -973,6 +980,7 @@ const Landing = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 

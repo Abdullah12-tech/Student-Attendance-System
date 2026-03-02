@@ -38,8 +38,12 @@ export default api;
 // Auth API
 export const authAPI = {
   login: (data) => api.post('/auth/login', data),
+  signup: (data) => api.post('/auth/register', data),
   getMe: () => api.get('/auth/me'),
   updatePassword: (data) => api.put('/auth/password', data),
+  forgotPassword: (data) => api.post('/auth/forgot-password', data),
+  resetPassword: (data) => api.post('/auth/reset-password', data),
+  verifyEmail: (token) => api.get(`/auth/verify-email/${token}`),
 };
 
 // Classes API
@@ -76,11 +80,32 @@ export const attendanceAPI = {
   manualMark: (data) => api.post('/attendance/manual', data),
 };
 
+// Teacher API
+export const teacherAPI = {
+  getDashboardStats: () => api.get('/teacher/stats'),
+  getRecentAttendance: () => api.get('/teacher/attendance/recent'),
+  getClassPerformance: () => api.get('/teacher/classes/performance'),
+  getClasses: () => api.get('/teacher/classes'),
+  getStudents: (classId) => api.get(`/teacher/classes/${classId}/students`),
+  createAttendanceSession: (data) => api.post('/teacher/attendance/sessions', data),
+  endAttendanceSession: (sessionId) => api.put(`/teacher/attendance/sessions/${sessionId}/end`),
+  getActiveSession: (classId) => api.get(`/teacher/attendance/sessions/active/${classId}`),
+  markAttendance: (data) => api.post('/teacher/attendance/mark', data),
+  bulkMarkAttendance: (data) => api.post('/teacher/attendance/bulk', data),
+  exportAttendance: (classId, params) => api.get(`/teacher/attendance/export/${classId}`, { params }),
+};
+
 // Admin API
 export const adminAPI = {
   getStats: () => api.get('/admin/stats'),
+  getAttendanceTrends: () => api.get('/admin/attendance/trends'),
+  getActiveSchools: () => api.get('/admin/schools/active'),
   getTeachers: (params) => api.get('/admin/teachers', { params }),
   createTeacher: (data) => api.post('/admin/teachers', data),
   updateTeacher: (id, data) => api.put(`/admin/teachers/${id}`, data),
   deleteTeacher: (id) => api.delete(`/admin/teachers/${id}`),
+  getSchools: () => api.get('/admin/schools'),
+  createSchool: (data) => api.post('/admin/schools', data),
+  updateSchool: (id, data) => api.put(`/admin/schools/${id}`, data),
+  deleteSchool: (id) => api.delete(`/admin/schools/${id}`),
 };

@@ -55,7 +55,7 @@ const DashboardLayout = ({ children }) => {
           <div className="flex items-center h-16 px-6 border-b">
             <Link to="/" className="flex items-center">
               <span className="text-2xl">🎓</span>
-              <span className="ml-2 font-bold text-gray-900">Attendance</span>
+              <span className="ml-2 font-bold text-gray-900">AttendX</span>
             </Link>
           </div>
 
