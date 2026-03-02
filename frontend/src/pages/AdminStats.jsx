@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { adminAPI, classesAPI } from '../../services/api';
+import { adminAPI, classesAPI } from '../services/api';
 
 const AdminStats = () => {
   const [stats, setStats] = useState(null);
